@@ -121,6 +121,10 @@ const commonConfig = {
             template: require('html-webpack-template'),
             appMountId: 'main',
             title: 'Elm Webpack',
+            minify: {
+                collapseWhitespace: true,
+                preserveLineBreaks: true,
+            }
         }),
     ],
 
