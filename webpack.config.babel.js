@@ -75,7 +75,7 @@ const commonConfig = {
                         publicPath: '../',
                     }
                 },
-            }, 
+            },
             {
                 test: /\.(eot|ttf|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 use: {
@@ -87,7 +87,7 @@ const commonConfig = {
                 },
             },
             {
-                test: /\.(png|jpe?g)$/i,
+                test: /\.(png|jpe?g|gif)$/i,
                 use: [
                     {
                         loader: 'url-loader',
