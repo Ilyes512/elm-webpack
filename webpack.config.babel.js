@@ -31,7 +31,7 @@ switch (process.env.npm_lifecycle_event) {
 const isDev = TARGET_ENV == DEV;
 const isPrd = TARGET_ENV == PRD;
 
-const entryPath = './js/main.js';
+const entryPath = './app/main.js';
 const outputPath = path.join(__dirname, 'dist');
 const outputFilename = isPrd ? '[name]-[hash].js' : '[name].js';
 const port = '8080';
@@ -55,6 +55,26 @@ const commonConfig = {
                 test: /\.js$/,
                 exclude: [/node_modules/],
                 loader: 'babel-loader',
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.(png|jpe?g)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 15000,
+                            name: './images/[name].[ext]',
+                        }
+                    }
+                ]
             },
             {
                 test: /\.elm$/,
@@ -117,8 +137,16 @@ if (isDev) {
 }
 
 if (isPrd) {
-    config = merge(commonConfig, {
+    config = merge.smart(commonConfig, {
         entry: entryPath,
+        module: {
+            loaders: [
+                {
+                    test: /\.(png|jpe?g)$/i,
+                    use: ['image-webpack-loader'],
+                },
+            ]
+        },
     });
 }
 

@@ -1,0 +1,7 @@
+$color: red;
+$bg-image: url("./../assets/images/tower.jpg"); 
+
+body {
+    background-image: $bg-image;
+    background-color: $color;
+}
