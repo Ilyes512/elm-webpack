@@ -65,6 +65,28 @@ const commonConfig = {
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 50000,
+                        mimetype: 'application/font-woff',
+                        name: './fonts/[name].[ext]',
+                        publicPath: '../',
+                    }
+                },
+            }, 
+            {
+                test: /\.(eot|ttf|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: './fonts/[name].[ext]',
+                        publicPath: '../',
+                    }
+                },
+            },
+            {
                 test: /\.(png|jpe?g)$/i,
                 use: [
                     {

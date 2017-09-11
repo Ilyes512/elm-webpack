@@ -1,8 +1,12 @@
 module Main exposing (..)
 
-import Html exposing (text)
+import Html exposing (text, div, button)
+import Html.Attributes exposing (class)
 
 
 main : Html.Html msg
 main =
-    text "Hello, World!"
+    div []
+        [ text "Hello, World!"
+        , button [ class "button" ] [ text "test" ]
+        ]
